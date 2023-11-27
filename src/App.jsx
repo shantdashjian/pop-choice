@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { openai, supabase } from './config.js'
 
 function App() {
 
