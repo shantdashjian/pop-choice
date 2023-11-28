@@ -5,7 +5,7 @@ import Main from './components/Main.jsx'
 function App() {
 
   return (
-    <div className="container">
+    <div className="container flex">
       <Header />
       <Main />
     </div>
