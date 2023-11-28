@@ -19,7 +19,6 @@ body {
 
 .container {
   padding: 3.125em;
-  border: 1px solid white;
   height: 100vh;
   overflow: auto;
 }
@@ -130,5 +129,9 @@ body {
     width: 480px;
     display: block;
     margin: 0 auto;
+  }
+
+  .container {
+    border: 1px solid white;
   }
 }
