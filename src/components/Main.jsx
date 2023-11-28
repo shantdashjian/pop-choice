@@ -3,10 +3,7 @@ import { useState } from "react"
 import loadingUrl from '../assets/loading.gif'
 import movieDbLogoUrl from '../assets/the-movie-db-logo.svg'
 
-export default function Main() {
-
-  const [showQuestions, setShowQuestions] = useState(true)
-  const [loading, setLoading] = useState(false)
+export default function Main({showQuestions, toggleShowQuestions, loading, toggleLoading}) {
   const [firstAnswer, setFirstAnswer] = useState('')
   const [secondAnswer, setSecondAnswer] = useState('')
   const [thirdAnswer, setThirdAnswer] = useState('')
@@ -26,8 +23,8 @@ export default function Main() {
   }
   async function handleLetsGo(e) {
     const input = `${firstAnswer} ${secondAnswer} ${thirdAnswer}`
-    setShowQuestions(false)
-    setLoading(true)
+    toggleShowQuestions()
+    toggleLoading()
     setFirstAnswer('')
     setSecondAnswer('')
     setThirdAnswer('')
@@ -69,11 +66,11 @@ export default function Main() {
     const posterPath = posterData.results[0].poster_path
     const posterUrl = `https://image.tmdb.org/t/p/original${posterPath}`
     setPosterUrl(posterUrl)
-    setLoading(false)
+    toggleLoading()
   }
 
   function handleGoAgain(e) {
-    setShowQuestions(true)
+    toggleShowQuestions()
   }
 
   return (
