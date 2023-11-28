@@ -14,3 +14,4 @@ if (!privateKey) throw new Error(`Expected env var VITE_SUPABASE_API_KEY`);
 const url = import.meta.env.VITE_SUPABASE_URL;
 if (!url) throw new Error(`Expected env var VITE_SUPABASE_URL`);
 export const supabase = createClient(url, privateKey);
+

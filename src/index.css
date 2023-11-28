@@ -100,6 +100,21 @@ body {
   margin-bottom: 4rem;
 }
 
+.poster-img {
+  margin-bottom: 1.4rem;
+  border-radius: 0.5rem;
+}
+
+.movie-db-logo-img {
+  height: 0.6rem;
+  width: fit-content;
+  position: relative;
+  top: -2.3rem;
+  right: -17.3rem;
+  background-color: black;
+  border: 1px solid black;
+}
+
 .result-title-release-year {
   font-size: 1.875rem;
   font-weight: 700;

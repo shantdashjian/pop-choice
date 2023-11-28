@@ -1,6 +1,7 @@
 import { openai, supabase } from "../config"
 import { useState } from "react"
 import loadingUrl from '../assets/loading.gif'
+import movieDbLogoUrl from '../assets/the-movie-db-logo.svg'
 
 export default function Main() {
 
@@ -9,9 +10,10 @@ export default function Main() {
   const [firstAnswer, setFirstAnswer] = useState('')
   const [secondAnswer, setSecondAnswer] = useState('')
   const [thirdAnswer, setThirdAnswer] = useState('')
-  const [title, setTitle] = useState('School of Rock')
-  const [releaseYear, setReleaseYear] = useState('2009')
-  const [content, setContent] = useState('A fun and stupid movie about a wannabe rocker turned fraud substitute teacher forming a rock band with his students to win the Battle of the Bands')
+  const [title, setTitle] = useState('')
+  const [releaseYear, setReleaseYear] = useState('')
+  const [content, setContent] = useState('')
+  const [posterUrl, setPosterUrl] = useState('')
 
   function handleFirstAnswer(e) {
     setFirstAnswer(e.target.value)
@@ -51,7 +53,7 @@ export default function Main() {
         role: 'user',
         content: content
       }
-    ]  
+    ]
     let response = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages: messages
@@ -59,8 +61,17 @@ export default function Main() {
     setTitle(title)
     setReleaseYear(release_year)
     setContent(response.choices[0].message.content)
+
+    const movieDbApiKey = import.meta.env.VITE_MOVIE_DB_API_KEY
+    const posterResponse =
+      await fetch(`https://api.themoviedb.org/3/search/movie?query=${title}&api_key=${movieDbApiKey}`)
+    const posterData = await posterResponse.json()
+    const posterPath = posterData.results[0].poster_path
+    const posterUrl = `https://image.tmdb.org/t/p/original${posterPath}`
+    setPosterUrl(posterUrl)
     setLoading(false)
   }
+
   function handleGoAgain(e) {
     setShowQuestions(true)
   }
@@ -95,6 +106,8 @@ export default function Main() {
         <div className="result-container flex">
           <div className="answer-container flex">
             <span className="result-title-release-year">{`${title} (${releaseYear})`}</span>
+            <img className="poster-img" src={posterUrl} alt={title} />
+            <img className="movie-db-logo-img" src={movieDbLogoUrl} alt="The Movie DB Logo" />
             <span className="result-content">{content}</span>
           </div>
           <div className="btn-container">
