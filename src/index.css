@@ -100,7 +100,7 @@ body {
   margin-bottom: 4rem;
 }
 
-.poster-img {
+.poster-img, .loading-img {
   margin-bottom: 1.4rem;
   border-radius: 0.5rem;
 }
