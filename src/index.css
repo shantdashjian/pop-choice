@@ -15,12 +15,13 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: start;
-  /* align-items: center; */
 }
 
 .container {
   padding: 3.125em;
-  border: 1px solid white;
+  border: 2px solid white;
+  height: 100vh;
+  overflow: auto;
 }
 
 .header-container {
@@ -40,8 +41,7 @@ body {
 
 .main-container {}
 
-.questions-container {
-}
+.questions-container {}
 
 .question-container {
   margin-bottom: 2.25rem;
@@ -85,6 +85,15 @@ body {
   justify-content: center;
   align-items: center;
   border: none;
+}
+
+.loading-img-container {
+  align-self: center;
+  width: 200px;
+}
+
+.loading-img {
+  width: 100%;
 }
 
 .answer-container {
